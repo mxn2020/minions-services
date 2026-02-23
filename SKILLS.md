@@ -1,126 +1,67 @@
 ---
 name: minions-services
-description: Agent skills for working with Minions Services MinionTypes. Provides CRUD operations, CLI usage, and best practices for AI agents managing minions-services data.
+description: Service catalog, packages, pricing tiers, case studies, and target industries
 ---
 
-# Minions Services Agent Skills
+# minions-services — Agent Skills
 
-Skills for agents operating on the `minions-services` toolbox.
+## What is a Service in the Minions Context?
 
-## Prerequisites
+```
+a service offered by the agency           → Service
+a bundled service package                 → ServicePackage
+a success story                           → CaseStudy
+```
 
-Install the SDK and CLI:
+## MinionTypes
+```ts
+// service — name, category, pricing model, base price, target industries
+// service-package — bundled services with total price and discount
+// case-study — challenge, solution, results, published URL
+```
+
+## Agent SKILLS
+```markdown
+# ServiceAgent Skills
+## Skill: Manage Catalog — create/update services and packages
+## Skill: Match Services — find best service for a prospect's needs
+## Hard Rules — pricing must be consistent across packages
+```
+
+
+---
+
+## CLI Reference
+
+Install globally:
 
 ```bash
-# TypeScript
-pnpm add @minions-services/sdk
-
-# Python
-pip install minions-services
-
-# CLI
 pnpm add -g @minions-services/cli
 ```
 
----
+Set `MINIONS_STORE` env var to control where data is stored (default: `.minions/`).
 
-## Using the CLI
-
-The `services` CLI provides basic project info and utilities:
+### Discover Types
 
 ```bash
-# Show project info (SDK name, CLI name, Python package)
-services info
+services types list
+services types show <type-slug>
 ```
 
-Use the CLI as the primary interface for scripted operations. For programmatic access within agent code, use the SDK directly.
+### CRUD
 
----
-
-## Using the SDK
-
-### TypeScript
-
-```ts
-import { customTypes } from '@minions-services/sdk/schemas';
-
-// List all available MinionTypes in this toolbox
-for (const type of customTypes) {
-  console.log(`${type.icon} ${type.name} (${type.slug})`);
-  console.log(`  ${type.description}`);
-  console.log(`  Fields: ${type.schema.map(f => f.name).join(', ')}`);
-}
-
-// Access a specific type
-const myType = customTypes.find(t => t.slug === 'YOUR_TYPE_SLUG');
+```bash
+services create <type> -t "Title" -s "status"
+services list <type>
+services show <id>
+services update <id> --data '{ "status": "active" }'
+services delete <id>
+services search "query"
 ```
 
-### Python
+### Stats & Validation
 
-```python
-from minions_services.schemas import custom_types
-
-# List all available MinionTypes
-for t in custom_types:
-    print(f"{t.icon} {t.name} ({t.slug})")
-    print(f"  {t.description}")
+```bash
+services stats
+services validate ./my-minion.json
 ```
-
----
-
-## Skill: Create Minion
-
-When creating a new Minion of any type in this toolbox:
-
-1. Look up the MinionType from `customTypes` by slug
-2. Validate all required fields are present according to the schema
-3. Set `string` fields to their values, `number` fields to numeric values
-4. Set `select` fields to one of their valid options
-5. Set `boolean` fields to `true` or `false`
-6. Always include a timestamp for any `createdAt` or similar fields (ISO 8601 format)
-
----
-
-## Skill: Read / Query Minions
-
-When reading or searching for Minions:
-
-1. Query by MinionType slug to filter by type
-2. Use field values for secondary filtering
-3. For references (fields ending in `Id`), resolve the linked Minion for full context
-4. Return results in a structured format the calling agent can parse
-
----
-
-## Skill: Update Minion
-
-When updating an existing Minion:
-
-1. Load the current Minion by ID
-2. Validate the update against the MinionType schema
-3. Only modify the fields that need changing — preserve existing values
-4. If the type has a `status` field, follow valid status transitions
-5. If the type has an `updatedAt` field, set it to the current timestamp
-6. Log significant field changes for audit if the context requires it
-
----
-
-## Skill: Delete / Archive Minion
-
-When removing a Minion:
-
-1. Prefer soft-delete: set `status` to `"cancelled"` or `"archived"` if available
-2. Never hard-delete Minions that other Minions reference via ID fields
-3. Check for dependent Minions before any destructive operation
-4. If hard-delete is required, ensure all references are cleaned up first
-
----
-
-## Hard Rules
-
-- Every Minion MUST conform to its MinionType schema
-- All `select` fields must use valid option values
-- All ID reference fields must point to existing Minions
-- Timestamps must be in ISO 8601 format
-- Never create orphaned Minions — always set reference fields when applicable
-- This agent only writes to `minions-services` — it reads from other toolboxes but never writes to them
