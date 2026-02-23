@@ -1,6 +1,12 @@
 ---
 name: minions-services
-description: Service catalog, packages, pricing tiers, case studies, and target industries
+id: OC-0157
+version: 1.0.0
+description: "Service catalog, packages, pricing tiers, case studies, and target industries"
+category: cloud
+subcategory: infrastructure
+tags: ["minion", "cloud", "infrastructure"]
+comments:
 ---
 
 # minions-services — Agent Skills
