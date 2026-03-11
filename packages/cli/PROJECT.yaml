@@ -6,3 +6,4 @@ description: "CLI for minions-services — Service catalog, packages, pricing ti
 priority: high
 deploy_url: null
 tags: null
+category: minion-toolbox

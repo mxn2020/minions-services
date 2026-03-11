@@ -6,3 +6,4 @@ description: "Service catalog, packages, pricing tiers, case studies, and target
 priority: high
 deploy_url: null
 tags: null
+category: minion-toolbox
