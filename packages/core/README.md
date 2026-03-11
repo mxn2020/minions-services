@@ -1,3 +1,5 @@
+![CI](https://github.com/mxn2020/@minions-services/sdk/actions/workflows/ci.yml/badge.svg) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 # @minions-services/sdk
 
 Service catalog, packages, pricing tiers, case studies, and target industries

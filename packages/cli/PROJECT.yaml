@@ -1,0 +1,8 @@
+name: "@minions-services/cli"
+project_scope: child
+child_type: cli
+parent_project: minions-services-workspace
+description: "CLI for minions-services — Service catalog, packages, pricing tiers, case studies, and target industries"
+priority: high
+deploy_url: null
+tags: null
