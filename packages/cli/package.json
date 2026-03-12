@@ -1,6 +1,6 @@
 {
   "name": "@minions-services/cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "CLI for minions-services — Service catalog, packages, pricing tiers, case studies, and target industries",
   "license": "MIT",
   "repository": {

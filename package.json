@@ -1,7 +1,7 @@
 {
   "name": "minions-services-workspace",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Service catalog, packages, pricing tiers, case studies, and target industries",
   "type": "module",
   "license": "MIT",
