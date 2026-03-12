@@ -1,0 +1,16 @@
+name: minions-services-workspace
+project_scope: main
+project_type: monorepo
+description: Service catalog, packages, pricing tiers, case studies, and target industries
+tier: prototype
+lane: minions-platform
+priority: medium
+oss: true
+stack: ["typescript"]
+repo: "https://github.com/mxn2020/minions-services"
+deploy_url: null
+last_active: 2026-03-11
+tags: ["minions-services-workspace", "minions", "toolbox"]
+notes: null
+id: null
+category: minion-toolbox
